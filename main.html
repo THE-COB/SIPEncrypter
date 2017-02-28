@@ -21,6 +21,11 @@
 		<textarea id="userImage" placeholder="Input image you want to encode your message in (link to raw image):"></textarea>
 	</td>
 </tr>
+<tr>
+	<td>
+		<button id="submitButton" onclick="submit()">Encode</button>
+	</td>
+</tr>
 
 </table>
 
@@ -28,14 +33,27 @@
 <style type="text/css">
 
 	#finalImage{
-		padding-left: 50em;
+		padding-left: 20em;
 	}
 
 	#finalKey{
 		padding-left: 10em;
 		font-family: Arial;
 	}
+	#submitButton{
+		border-radius: 5px;
+		border: none;
+		font-family: Verdana;
+		background-color: #B7B7B7;
+		padding: 10px;
+	}
+	#userString,#userImage{
+		width: 200px;
+		height: 100px;
+	}
+	
 
 </style>
+<script type="text/javascript" src="script.js"></script>
 </html>
 
