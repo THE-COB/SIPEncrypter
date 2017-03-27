@@ -11,6 +11,9 @@ var submit = function(){
 
 	userImage.onload = function(){
 		ctx.drawImage(userImage, 0, 0);
+		var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		var data = imageData.data;
+		console.log(data);
 	}
 
 	// Converting the user's string to binary
@@ -19,5 +22,7 @@ var submit = function(){
 	for(var i = 0; i<stringLength; i++){
 		letters.push(userString.charCodeAt(i).toString(2));
 	}
-	
+
+	console.log(imageData);
+
 }
