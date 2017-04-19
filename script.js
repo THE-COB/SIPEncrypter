@@ -8,7 +8,8 @@ var submit = function(){
 	userImage.src = userLink;
 	var canvas = document.getElementById("finalImage");
 	var ctx = canvas.getContext("2d");
-
+	userImage.crossOrigin="anonymous";
+	
 	userImage.onload = function(){
 		ctx.drawImage(userImage, 0, 0);
 		var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -22,6 +23,7 @@ var submit = function(){
 	for(var i = 0; i<stringLength; i++){
 		letters.push(userString.charCodeAt(i).toString(2));
 	}
+	alert(letters);
 
 	console.log(imageData);
 
