@@ -11,10 +11,7 @@ var submit = function(){
 	userImage.crossOrigin="anonymous";
 	
 	userImage.onload = function(){
-		ctx.drawImage(userImage, 0, 0);
-		var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-		var data = imageData.data;
-		console.log(data);
+		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
 	}
 
 	// Converting the user's string to binary
@@ -24,7 +21,5 @@ var submit = function(){
 		letters.push(userString.charCodeAt(i).toString(2));
 	}
 	alert(letters);
-
-	console.log(imageData);
 
 }
