@@ -14,12 +14,19 @@ var submit = function(){
 		canvas.width = userImage.width;
 		canvas.height = userImage.height;
 		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
-		var imgData = ctx.getImageData(0, 0, userImage.width, userImage.height);
-		red = imgData.data[0];
-		green = imgData.data[1];
-		blue = imgData.data[2];
-		alpha = imgData.data[3];
-		alert(red + " " + green + " " + blue + " " + alpha);
+		
+		
+		for(x = 0; x <= userImage.width; x++){
+			for(y = 0; y <= userImage.height; y++){
+				var imageData = ctx.getImageData(x, y, userImage.width, userImage.height);
+				red = imageData.data[0];
+				green = imageData.data[1];
+				blue = imageData.data[2];
+				alpha = imageData.data[3];
+				console.log(red + " " + green + " " + blue + " " + alpha);
+			}
+
+		}
 	}
 
 	// Converting the user's string to binary
