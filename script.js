@@ -11,7 +11,15 @@ var submit = function(){
 	userImage.crossOrigin="anonymous";
 	
 	userImage.onload = function(){
+		canvas.width = userImage.width;
+		canvas.height = userImage.height;
 		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
+		var imgData = ctx.getImageData(0, 0, userImage.width, userImage.height);
+		red = imgData.data[0];
+		green = imgData.data[1];
+		blue = imgData.data[2];
+		alpha = imgData.data[3];
+		alert(red + " " + green + " " + blue + " " + alpha);
 	}
 
 	// Converting the user's string to binary
