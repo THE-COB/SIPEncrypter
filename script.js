@@ -1,4 +1,5 @@
 // Use this function to initialize the algorithm
+userImage.crossOrigin="anonymous";
 var submit = function(){
 
 	// Making a usable image to manipulate from the user's link
@@ -8,7 +9,6 @@ var submit = function(){
 	userImage.src = userLink;
 	var canvas = document.getElementById("finalImage");
 	var ctx = canvas.getContext("2d");
-	userImage.crossOrigin="anonymous";
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
