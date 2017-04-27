@@ -17,12 +17,25 @@ var submit = function(){
 		
 		for(x = 0; x <= userImage.width; x++){
 			for(y = 0; y <= userImage.height; y++){
+
+				if (Math.random() > .5){
+					var randomBin = 1;
+				}
+				else{
+					var randomBin = 0;
+				}
+				console.log(randomBin);
+
 				var imageData = ctx.getImageData(x, y, userImage.width, userImage.height);
-				red = imageData.data[0];
-				green = imageData.data[1];
-				blue = imageData.data[2];
-				alpha = imageData.data[3];
-				console.log(red + " " + green + " " + blue + " " + alpha);
+				pixelData = imageData.data;
+				console.log(pixelData);
+				pixelData.push(randomBin);
+				red = pixelData[0];
+				green = pixelData[1];
+				blue = pixelData[2];
+				alpha = pixelData[3];
+				random = pixelData[4];
+				console.log(red + " " + green + " " + blue + " " + alpha + " " + random);
 			}
 
 		}
