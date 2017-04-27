@@ -5,6 +5,7 @@ var submit = function(){
 	var userString = document.getElementById("userString").value;
 	var userLink = document.getElementById("userImage").value;
 	var userImage = new Image();
+	userImage.crossOrigin = "anonymous";
 	userImage.src = userLink;
 	var canvas = document.getElementById("finalImage");
 	var ctx = canvas.getContext("2d");
@@ -13,7 +14,8 @@ var submit = function(){
 		canvas.width = userImage.width;
 		canvas.height = userImage.height;
 		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
-		
+		userImage.crossOrigin = 'anonymous';
+		localStorage.setItem( "savedImageData", canvas.toDataURL("userImage/jpg") );
 		
 		for(x = 0; x <= userImage.width; x++){
 			for(y = 0; y <= userImage.height; y++){
@@ -25,9 +27,11 @@ var submit = function(){
 					var randomBin = 0;
 				}
 				console.log(randomBin);
-
-				var imageData = ctx.getImageData(x, y, userImage.width, userImage.height);
-				pixelData = imageData.data;
+				var imageData = [];
+				imageData.push(ctx.getImageData(x, y, userImage.width, userImage.height));
+				imageData.crossOrigin = 'anonymous';
+				var pixelData = [];
+				pixelData.push(imageData.data);
 				console.log(pixelData);
 				pixelData.push(randomBin);
 				red = pixelData[0];
