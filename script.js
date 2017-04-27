@@ -1,5 +1,4 @@
 // Use this function to initialize the algorithm
-crossOrigin="anonymous";
 var submit = function(){
 
 	// Making a usable image to manipulate from the user's link
