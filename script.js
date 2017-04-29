@@ -41,11 +41,12 @@ var submit = function(){
 	}
 
 	// Converting the user's string to binary
+	// Converting the user's string to binary
 	var stringLength = userString.length;
 	var letters = [];
 	for(var i = 0; i<stringLength; i++){
-		letters.push(userString.charCodeAt(i).toString(2));
+		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
 	}
-	alert(letters);
+	console.log(letters);
 
 }
