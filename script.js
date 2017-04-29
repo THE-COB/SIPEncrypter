@@ -15,7 +15,6 @@ var submit = function(){
 		canvas.height = userImage.height;
 		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
 		userImage.crossOrigin = 'anonymous';
-		localStorage.setItem( "savedImageData", canvas.toDataURL("userImage/jpg") );
 		
 		for(x = 0; x <= userImage.width; x++){
 			for(y = 0; y <= userImage.height; y++){
@@ -26,20 +25,16 @@ var submit = function(){
 				else{
 					var randomBin = 0;
 				}
-				console.log(randomBin);
-				var imageData = [];
-				imageData.push(ctx.getImageData(x, y, userImage.width, userImage.height));
-				imageData.crossOrigin = 'anonymous';
-				var pixelData = [];
-				pixelData.push(imageData.data);
-				console.log(pixelData);
-				pixelData.push(randomBin);
-				red = pixelData[0];
-				green = pixelData[1];
-				blue = pixelData[2];
-				alpha = pixelData[3];
-				random = pixelData[4];
-				console.log(red + " " + green + " " + blue + " " + alpha + " " + random);
+
+				var color = ctx.getImageData(x, y, userImage.width, userImage.height).data;
+				var pixelData = {
+					red: color[0],
+					green: color[1],
+					blue: color[2],
+					alpha: color[3],
+					data: randomBin
+				};
+
 			}
 
 		}
