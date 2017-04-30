@@ -9,6 +9,16 @@ var submit = function(){
 	userImage.src = userLink;
 	var canvas = document.getElementById("finalImage");
 	var ctx = canvas.getContext("2d");
+
+	var key = [];
+
+		// Converting the user's string to binary
+	var stringLength = userString.length;
+	var letters = [];
+	for(var i = 0; i<stringLength; i++){
+		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
+	}
+	console.log(letters);
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
@@ -26,27 +36,40 @@ var submit = function(){
 					var randomBin = 0;
 				}
 
-				var color = ctx.getImageData(x, y, userImage.width, userImage.height).data;
-				var pixelData = {
-					red: color[0],
-					green: color[1],
-					blue: color[2],
-					alpha: color[3],
-					data: randomBin
-				};
+
+				]//FIND A WAY TO PUSH RANDOMBIN TO EACH PIXEL
+
+				
 
 			}
 
 		}
-	}
 
-	// Converting the user's string to binary
-	// Converting the user's string to binary
-	var stringLength = userString.length;
-	var letters = [];
-	for(var i = 0; i<stringLength; i++){
-		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
+	//Creates key for decrytion based on random pixels that have the right data integers
+
+		//Iterate through each of the terms of the array
+		for(z in letters){
+			//Iterate through each of the bits of the term
+			for(bitCount = 0; bitCount <= 7; bitCount++){
+
+				//Generates value to pick a random pixel
+				var randomX = Math.floor(Math.random() * userImage.width);
+				var randomY = Math.floor(Math.random() * userImage.height);
+
+				//Isolates a bit in a term of the letters array
+				var bit = z.substring(bitCount, bitCount + 1);
+
+				//If the data bit of a random pixel is == to the bit one one of the letters in the string, add it to the pixel to the key
+				if(bit == ctx.getImageData(randomX, randomY, 1, 1).data[4]){
+
+					//Pushes right answers to final key array
+					key.push(randomX + "-" + randomY);					
+				}
+			}
+		}
+
+		console.log(key);
+
 	}
-	console.log(letters);
 
 }
