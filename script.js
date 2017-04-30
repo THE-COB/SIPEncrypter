@@ -1,5 +1,5 @@
 // Use this function to initialize the algorithm
-var submit = function(){
+var encrypt = function(){
 
 	// Making a usable image to manipulate from the user's link
 	var userString = document.getElementById("userString").value;
@@ -29,21 +29,25 @@ var submit = function(){
 		for(x = 0; x <= userImage.width; x++){
 			for(y = 0; y <= userImage.height; y++){
 
+				var imageData = ctx.getImageData( x, y, 1, 1);
+				var data = imageData.data;
+
 				if (Math.random() > .5){
-					var randomBin = 1;
+
+					data[3] = 244; 
+					ctx.putImageData( imageData, x, y)
+
 				}
 				else{
-					var randomBin = 0;
 				}
 
-
-				]//FIND A WAY TO PUSH RANDOMBIN TO EACH PIXEL
-
-				
+				console.log(ctx.getImageData( x, y, 1, 1).data);
 
 			}
 
 		}
+
+	
 
 	//Creates key for decrytion based on random pixels that have the right data integers
 
@@ -60,10 +64,10 @@ var submit = function(){
 				var bit = z.substring(bitCount, bitCount + 1);
 
 				//If the data bit of a random pixel is == to the bit one one of the letters in the string, add it to the pixel to the key
-				if(bit == ctx.getImageData(randomX, randomY, 1, 1).data[4]){
+				if(bit == 255 - ctx.getImageData(randomX, randomY, 1, 1).data[3]){
 
 					//Pushes right answers to final key array
-					key.push(randomX + "-" + randomY);					
+					key.push(randomX + "," + randomY);					
 				}
 			}
 		}
@@ -71,5 +75,9 @@ var submit = function(){
 		console.log(key);
 
 	}
+
+}
+
+var decrypt = function(){
 
 }
