@@ -5,7 +5,7 @@
 <table>
 <tr>
 	<td>
-		<textarea id="userString" placeholder="Input message you want to encode in the image:"></textarea>
+		<textarea class="textBox" id="userString" placeholder="Input message you want to encode in the image:"></textarea>
 	</td>
 
 	<td id="imageCell">
@@ -17,14 +17,36 @@
 </tr>
 <tr>
 	<td>
-		<textarea id="userImage" placeholder="Input image you want to encode your message in (link to local image):"></textarea>
+		<textarea class="textBox" id="userImage" placeholder="Input image you want to encode your message in (link to local image):"></textarea>
 	</td>
 </tr>
 <tr>
 	<td>
-		<button id="submitButton" onclick="encrypt()">Encode</button>
+		<button id="submitButton" onclick="encrypt()">Encrypt</button>
 	</td>
 </tr>
+
+<!-- Decrypt UI -->
+<tr>
+	<td id="keyCell">
+		<textarea class="textBox" placeholder="Input key given:"></textarea>
+	</td>
+
+	<td id="finalDecrypt">
+		<textarea id="deOut" class="textBox" placeholder="Final decrypted message here:"></textarea>
+	</td>
+</tr>
+<tr>
+	<td id="userImageToDecrypt">
+		<textarea id="toDe" class="textBox" placeholder="Input the image you would like to decrypt (Only local link):"></textarea>
+	</td>
+</tr>
+<tr>
+	<td>
+		<button id="submitButton" onclick="decrypt()">Decrypt</button>
+	</td>
+</tr>
+
 
 </table>
 
@@ -46,10 +68,19 @@
 		background-color: #B7B7B7;
 		padding: 10px;
 	}
-	#userString,#userImage{
+	.textBox{
 		width: 200px;
 		height: 100px;
 	}
+	#keyCell{
+		padding-top: 2em;
+		padding-bottom: 2em;
+		padding-right: 4em;
+	}
+	#userImageToDecrypt{
+		padding-bottom: 2em;
+	}
+
 	
 
 </style>
