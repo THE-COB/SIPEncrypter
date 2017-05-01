@@ -41,8 +41,6 @@ var encrypt = function(){
 				else{
 				}
 
-				console.log(ctx.getImageData( x, y, 1, 1).data);
-
 			}
 
 		}
@@ -67,12 +65,12 @@ var encrypt = function(){
 				if(bit == 255 - ctx.getImageData(randomX, randomY, 1, 1).data[3]){
 
 					//Pushes right answers to final key array
-					key.push(randomX + "," + randomY);					
+					key.push(randomX + "-" + randomY);					
 				}
 			}
 		}
 
-		console.log(key);
+		document.getElementById("finalKey").value = "Key: " + key;
 
 	}
 
