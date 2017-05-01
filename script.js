@@ -34,7 +34,7 @@ var encrypt = function(){
 
 				if (Math.random() > .5){
 
-					data[3] = 244; 
+					data[3] = 254; 
 					ctx.putImageData( imageData, x, y)
 
 				}
@@ -50,7 +50,7 @@ var encrypt = function(){
 	//Creates key for decrytion based on random pixels that have the right data integers
 
 		//Iterate through each of the terms of the array
-		for(z in letters){
+		for(let z of letters){
 			//Iterate through each of the bits of the term
 			for(bitCount = 0; bitCount <= 7; bitCount++){
 
@@ -77,5 +77,40 @@ var encrypt = function(){
 }
 
 var decrypt = function(){
+
+	//Intialize the image
+	var userLink = document.getElementById("toDe").value;
+	var userImage = new Image();
+	userImage.crossOrigin = "anonymous";
+	userImage.src = userLink;
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+
+	userImage.onload = function(){
+
+		canvas.width = userImage.width;
+		canvas.height = userImage.height;
+		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
+
+		var userKey = document.getElementById("userKey").value;
+		var userKey = userKey.split(",");
+		var userFinalString = [];
+		var userFinalBin = [];
+
+		for(let n of userKey){
+
+			var splitKeyVal = n.split("-");
+			var xCord = parseInt(splitKeyVal[0]);
+			var yCord = parseInt(splitKeyVal[1]);
+			var data = ctx.getImageData( xCord, yCord, 1, 1).data[3];
+			var pixelBin = 255 - data;
+			userFinalBin.push(pixelBin);
+
+		}
+
+		
+
+	}
+
 
 }
