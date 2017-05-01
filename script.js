@@ -15,17 +15,20 @@ var encrypt = function(){
 		// Converting the user's string to binary
 	var stringLength = userString.length;
 	var letters = [];
+
 	for(var i = 0; i<stringLength; i++){
 		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
 	}
+
 	console.log(letters);
+	console.log(userImage);
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
 		canvas.height = userImage.height;
 		ctx.drawImage(userImage, 0, 0, userImage.width, userImage.height, 0, 0 , canvas.width, canvas.height);
 		userImage.crossOrigin = 'anonymous';
-		
+
 		for(x = 0; x <= userImage.width; x++){
 			for(y = 0; y <= userImage.height; y++){
 
@@ -50,7 +53,10 @@ var encrypt = function(){
 	//Creates key for decrytion based on random pixels that have the right data integers
 
 		//Iterate through each of the terms of the array
-		for(let z of letters){
+		for(let p of letters){
+
+			var z = p.toString();
+
 			//Iterate through each of the bits of the term
 			for(bitCount = 0; bitCount <= 7; bitCount++){
 
@@ -60,6 +66,7 @@ var encrypt = function(){
 
 				//Isolates a bit in a term of the letters array
 				var bit = z.substring(bitCount, bitCount + 1);
+				parseInt(bit);
 
 				//If the data bit of a random pixel is == to the bit one one of the letters in the string, add it to the pixel to the key
 				if(bit == 255 - ctx.getImageData(randomX, randomY, 1, 1).data[3]){
@@ -69,7 +76,6 @@ var encrypt = function(){
 				}
 			}
 		}
-
 		document.getElementById("finalKey").value = "Key: " + key;
 
 	}
@@ -96,6 +102,8 @@ var decrypt = function(){
 		var userKey = userKey.split(",");
 		var userFinalString = [];
 		var userFinalBin = [];
+		var fullBin = [];
+		var uniChars = [];
 
 		for(let n of userKey){
 
@@ -108,9 +116,25 @@ var decrypt = function(){
 
 		}
 
-		
+		var count = 0;
+		for(let j of userFinalBin){
+			count++;
 
-	}
+			if(count < 7){
+				fullBin.push(j);
+			}
+			else{
+				fullBin.toString();
+				uniChars.push(fullBin);
+				var count = 0;
+				userFinalBin.splice(0, 7);
+			}
+		
+		}
+
+		console.log(uniChars);
+
+		}
 
 
 }
