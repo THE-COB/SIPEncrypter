@@ -19,9 +19,6 @@ var encrypt = function(){
 	for(var i = 0; i<stringLength; i++){
 		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
 	}
-
-	console.log(letters);
-	console.log(userImage);
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
@@ -116,24 +113,15 @@ var decrypt = function(){
 
 		}
 
-		var count = 0;
-		for(let j of userFinalBin){
-			count++;
+		for(var i = 0; i < userFinalBin.length; i += 6){
+			var part = userFinalBin.slice(i, i+7);
 
-			if(count < 7){
-				fullBin.push(j);
-			}
-			else{
-				fullBin.toString();
-				uniChars.push(fullBin);
-				var count = 0;
-				userFinalBin.splice(0, 7);
-			}
-		
+			part.toString();
+			
+			uniChars.push(part);
 		}
 
-		console.log(uniChars);
-
+		console.log(uniChars[1]);
 		}
 
 
