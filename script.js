@@ -19,6 +19,8 @@ var encrypt = function(){
 	for(var i = 0; i<stringLength; i++){
 		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
 	}
+
+	console.log(letters);
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
@@ -54,8 +56,9 @@ var encrypt = function(){
 
 			var z = p.toString();
 
+			var bitCount = 0;
 			//Iterate through each of the bits of the term
-			for(bitCount = 0; bitCount <= 7; bitCount++){
+			while(bitCount <= 6){
 
 				//Generates value to pick a random pixel
 				var randomX = Math.floor(Math.random() * userImage.width);
@@ -69,10 +72,13 @@ var encrypt = function(){
 				if(bit == 255 - ctx.getImageData(randomX, randomY, 1, 1).data[3]){
 
 					//Pushes right answers to final key array
-					key.push(randomX + "-" + randomY);					
+					key.push(randomX + "-" + randomY);
+					console.log("Passed:" + bitCount);
+					bitCount++;				
 				}
 			}
 		}
+		console.log(key);
 		document.getElementById("finalKey").value = "Key: " + key;
 
 	}
@@ -97,7 +103,7 @@ var decrypt = function(){
 
 		var userKey = document.getElementById("userKey").value;
 		var userKey = userKey.split(",");
-		var userFinalString = [];
+		var userFinalString;
 		var userFinalBin = [];
 		var fullBin = [];
 		var uniChars = [];
@@ -113,15 +119,31 @@ var decrypt = function(){
 
 		}
 
-		for(var i = 0; i < userFinalBin.length; i += 6){
+		for(var i = 0; i < userFinalBin.length; i += 7){
 			var part = userFinalBin.slice(i, i+7);
 
-			part.toString();
-			
-			uniChars.push(part);
+			var joinedPart = part.join("");
+			uniChars.push(joinedPart);
 		}
 
-		console.log(uniChars[1]);
+		console.log(joinedPart);
+
+
+		var letterChars = [];
+
+		for(let k of uniChars){
+			letterChars.push(parseInt(k, 2));		
+		}
+
+		var finalLetters = [];
+
+
+		for(let r of letterChars){
+			finalLetters.push(String.fromCharCode(r));
+		}
+
+		document.getElementById("deOut").value = finalLetters.join("");
+
 		}
 
 
