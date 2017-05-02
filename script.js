@@ -20,7 +20,6 @@ var encrypt = function(){
 		letters.push(parseInt(userString.charCodeAt(i).toString(2)));
 	}
 
-	console.log(letters);
 	
 	userImage.onload = function(){
 		canvas.width = userImage.width;
@@ -73,12 +72,10 @@ var encrypt = function(){
 
 					//Pushes right answers to final key array
 					key.push(randomX + "-" + randomY);
-					console.log("Passed:" + bitCount);
 					bitCount++;				
 				}
 			}
 		}
-		console.log(key);
 		document.getElementById("finalKey").value = "Key: " + key;
 
 	}
@@ -126,7 +123,6 @@ var decrypt = function(){
 			uniChars.push(joinedPart);
 		}
 
-		console.log(joinedPart);
 
 
 		var letterChars = [];
